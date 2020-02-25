@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20217D8F2405D7C8005E5F87 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20217D8E2405D7C7005E5F87 /* click.wav */; };
+		20217D912405D7CE005E5F87 /* 016- Earthbound - Pokey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20217D902405D7CE005E5F87 /* 016- Earthbound - Pokey.mp3 */; };
+		20217D932405D969005E5F87 /* enemyhit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20217D922405D969005E5F87 /* enemyhit.wav */; };
+		20217D952405D9B9005E5F87 /* attack1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20217D942405D9B9005E5F87 /* attack1.wav */; };
 		20B4B7EA23EA0BC500DA1668 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B4B7E923EA0BC500DA1668 /* GameOverScene.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
 		AFD63F872036493600E08C66 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD63F862036493600E08C66 /* GameViewController.swift */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20217D8E2405D7C7005E5F87 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = click.wav; path = ../../../../Downloads/click.wav; sourceTree = "<group>"; };
+		20217D902405D7CE005E5F87 /* 016- Earthbound - Pokey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "016- Earthbound - Pokey.mp3"; path = "../../../../Downloads/016- Earthbound - Pokey.mp3"; sourceTree = "<group>"; };
+		20217D922405D969005E5F87 /* enemyhit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = enemyhit.wav; path = ../../../../Downloads/enemyhit.wav; sourceTree = "<group>"; };
+		20217D942405D9B9005E5F87 /* attack1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = attack1.wav; path = ../../../../Downloads/attack1.wav; sourceTree = "<group>"; };
 		20B4B7E923EA0BC500DA1668 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NinjaAttack/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFD63F862036493600E08C66 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameViewController.swift; path = NinjaAttack/GameViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +56,10 @@
 			children = (
 				AFD63F8D203649F800E08C66 /* background-music-aac.caf */,
 				AFD63F8E203649F800E08C66 /* pew-pew-lei.caf */,
+				20217D8E2405D7C7005E5F87 /* click.wav */,
+				20217D902405D7CE005E5F87 /* 016- Earthbound - Pokey.mp3 */,
+				20217D942405D9B9005E5F87 /* attack1.wav */,
+				20217D922405D969005E5F87 /* enemyhit.wav */,
 			);
 			name = Sounds;
 			path = NinjaAttack/Sounds;
@@ -149,9 +161,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFD63F8F203649F800E08C66 /* background-music-aac.caf in Resources */,
+				20217D912405D7CE005E5F87 /* 016- Earthbound - Pokey.mp3 in Resources */,
 				D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */,
+				20217D932405D969005E5F87 /* enemyhit.wav in Resources */,
 				5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */,
+				20217D8F2405D7C8005E5F87 /* click.wav in Resources */,
 				AFD63F90203649F800E08C66 /* pew-pew-lei.caf in Resources */,
+				20217D952405D9B9005E5F87 /* attack1.wav in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

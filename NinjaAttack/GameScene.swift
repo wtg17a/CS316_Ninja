@@ -82,6 +82,7 @@ class GameScene: SKScene
   let player = SKSpriteNode(imageNamed: "player")
   
   var monstersDestroyed = 0
+  var attackCooldown = 0
     
   override func didMove(to view: SKView)
   {
@@ -102,7 +103,7 @@ class GameScene: SKScene
     physicsWorld.gravity = .zero
     physicsWorld.contactDelegate = self
     
-    let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
+    let backgroundMusic = SKAudioNode(fileNamed: "016- Earthbound - Pokey.mp3")
     backgroundMusic.autoplayLooped = true
     addChild(backgroundMusic)
   }
@@ -158,53 +159,58 @@ class GameScene: SKScene
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
   {
-    // 1 - Choose one of the touches to work with
-    guard let touch = touches.first else
+    if(attackCooldown == 0)
     {
-      return
+      // 1 - Choose one of the touches to work with
+      guard let touch = touches.first else
+      {
+        return
+      }
+      
+      run(SKAction.playSoundFileNamed("attack1.wav", waitForCompletion: false))
+      
+      let touchLocation = touch.location(in: self)
+      
+      // 2 - Set up initial location of projectile
+      let projectile = SKSpriteNode(imageNamed: "projectile")
+      projectile.position = player.position
+      
+      projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
+      projectile.physicsBody?.isDynamic = true
+      projectile.physicsBody?.categoryBitMask = PhysicsCategory.projectile
+      projectile.physicsBody?.contactTestBitMask = PhysicsCategory.monster
+      projectile.physicsBody?.collisionBitMask = PhysicsCategory.none
+      projectile.physicsBody?.usesPreciseCollisionDetection = true
+      
+      // 3 - Determine offset of location to projectile
+      let offset = touchLocation - projectile.position
+      
+      // 4 - Bail out if you are shooting down or backwards
+      if offset.x < 0 { return }
+      
+      // 5 - OK to add now - you've double checked position
+      addChild(projectile)
+      
+      // 6 - Get the direction of where to shoot
+      let direction = offset.normalized()
+      
+      // 7 - Make it shoot far enough to be guaranteed off screen
+      let shootAmount = direction * 1000
+      
+      // 8 - Add the shoot amount to the current position
+      let realDest = shootAmount + projectile.position
+      
+      // 9 - Create the actions
+      let actionMove = SKAction.move(to: realDest, duration: 2.0)
+      let actionMoveDone = SKAction.removeFromParent()
+      projectile.run(SKAction.sequence([actionMove, actionMoveDone]))
+      
     }
-    
-    run(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
-    
-    let touchLocation = touch.location(in: self)
-    
-    // 2 - Set up initial location of projectile
-    let projectile = SKSpriteNode(imageNamed: "projectile")
-    projectile.position = player.position
-    
-    projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
-    projectile.physicsBody?.isDynamic = true
-    projectile.physicsBody?.categoryBitMask = PhysicsCategory.projectile
-    projectile.physicsBody?.contactTestBitMask = PhysicsCategory.monster
-    projectile.physicsBody?.collisionBitMask = PhysicsCategory.none
-    projectile.physicsBody?.usesPreciseCollisionDetection = true
-    
-    // 3 - Determine offset of location to projectile
-    let offset = touchLocation - projectile.position
-    
-    // 4 - Bail out if you are shooting down or backwards
-    if offset.x < 0 { return }
-    
-    // 5 - OK to add now - you've double checked position
-    addChild(projectile)
-    
-    // 6 - Get the direction of where to shoot
-    let direction = offset.normalized()
-    
-    // 7 - Make it shoot far enough to be guaranteed off screen
-    let shootAmount = direction * 1000
-    
-    // 8 - Add the shoot amount to the current position
-    let realDest = shootAmount + projectile.position
-    
-    // 9 - Create the actions
-    let actionMove = SKAction.move(to: realDest, duration: 2.0)
-    let actionMoveDone = SKAction.removeFromParent()
-    projectile.run(SKAction.sequence([actionMove, actionMoveDone]))
   }
   
   func projectileDidCollideWithMonster(projectile: SKSpriteNode, monster: SKSpriteNode)
   {
+    run(SKAction.playSoundFileNamed("enemyhit.wav", waitForCompletion: false))
     print("Hit")
     projectile.removeFromParent()
     monster.removeFromParent()
